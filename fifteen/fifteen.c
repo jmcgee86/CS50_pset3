@@ -156,24 +156,20 @@ void greet(void)
  */
 void init(void)
 {
-    // TODO
-    int tile = (d*d) - 1;
-    //board[d][d];
-    for (int i = 0; i<d; i++)
+    int tile = (d * d) - 1;
+    for (int i = 0; i < d; i++)
     {
-        for (int j = 0; j<d; j++)
+        for (int j = 0; j < d; j++)
         {
             board[i][j] = tile;
             tile--;
-            //eprintf("%i",board[i][j]);
-            //printf("%i\n", board[i][j]);
         }
     }
-    // if (! d % 2)
-    // {
-    //     printf("%i\n", board[3][1]);
-    //     printf("%i\n", board[3][2]);
-    // }
+    if (d % 2 == 0)
+    {
+        board[ d - 1][ d - 3] = 1;
+        board[d - 1][d - 2] = 2;
+    }
 
 }
 
@@ -183,19 +179,18 @@ void init(void)
 void draw(void)
 {
     // TODO
-    for (int i = 0; i<d; i++)
+    for (int i = 0; i < d; i++)
     {
-        for (int j = 0; j<d; j++)
+        for (int j = 0; j < d; j++)
         {
-            if(board[i][j] == 0)
+            if (board[i][j] == 0)
             {
                 printf("   -  ");
             }
             else
             {
-                printf("  %2i  ",board[i][j]);
+                printf("  %2i  ", board[i][j]);
             }
-            //printf("%i\n", board[i][j]);
         }
         printf("\n");
     }
@@ -207,7 +202,68 @@ void draw(void)
  */
 bool move(int tile)
 {
-    // TODO
+
+    int blank_row;
+    int blank_col;
+    int tile_row;
+    int tile_col;
+
+    if (tile < 0 || tile > (d * d - 1))
+    {
+        return false;
+    }
+
+    if (board[d - 1][d - 1] == 0)
+    {
+        blank_row = d - 1;
+        blank_col = d - 1;
+    }
+    else
+    {
+        for (int i = 0; i < d; i++)
+        {
+            for (int j = 0; j < d; j++)
+            {
+                if (board[i][j] == 0)
+                {
+                    blank_row = i;
+                    blank_col = j;
+                    break;
+                }
+
+            }
+        }
+    }
+
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            if (tile == board[i][j])
+            {
+                tile_row = i;
+                tile_col = j;
+                break;
+            }
+
+        }
+    }
+    if (tile_row == blank_row && (tile_col == (blank_col - 1) || tile_col == (blank_col + 1)))
+    {
+        board[tile_row][tile_col] = 0;
+        board[blank_row][blank_col] = tile;
+        blank_row = tile_row;
+        blank_col = tile_col;
+        return true;
+    }
+    else if (tile_col == blank_col && (tile_row == (blank_row - 1) || (tile_row == (blank_row + 1))))
+    {
+        board[tile_row][tile_col] = 0;
+        board[blank_row][blank_col] = tile;
+        blank_row = tile_row;
+        blank_col = tile_col;
+        return true;
+    }
     return false;
 }
 
@@ -218,5 +274,28 @@ bool move(int tile)
 bool won(void)
 {
     // TODO
-    return false;
+    int check = 1;
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            if (check == board[i][j])
+            {
+                if (check < (d * d) - 1)
+                {
+                    check++;
+                }
+                else
+                {
+                    check = 0;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+    }
+    return true;
 }
