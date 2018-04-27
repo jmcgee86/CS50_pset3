@@ -1,3 +1,7 @@
+// PRC-MATT -  nice comments! Our search function is pretty much the same implentation, and you have great variable names and
+// the comments make it easy to follow along. Same for your sort function, which was different than what i did so it is cool
+// to see it done a different way.
+
 /**
  * helpers.c
  *

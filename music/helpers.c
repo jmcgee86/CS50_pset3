@@ -1,3 +1,12 @@
+// PRC-MATT - CS50 check passes, and style50 passes except it asks for more comments. That is what I was going to say as well.
+// Duration is nice and clean and easy to follow along, but maybe just a few comments to make it even easier at a quick glance
+// For Frequency, char fs_note and char r_note are hard to tell what they mean at first, I know what they are since I know
+// the problem, but adding a comment about those would be helpful. The rest of the function is easy to follow along for me, again
+// because I know what is supposed to happen, but comments throughout would help a lot.
+// I also first used a bunch of else ifs, and you actually did it differently than i did by doubling up on notes that are the same
+// like A# and Bb, but then i did not like the way my code looked, so i made a couple of switch statements. Yours looks nicer than
+// mine did when I first did it, but if you ever wanted to change up your code, that could be a way to go.
+
 // Helper functions for music
 
 #include <cs50.h>

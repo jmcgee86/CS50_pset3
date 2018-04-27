@@ -1,3 +1,11 @@
+// PRC-MATT - Style50 and check50 both pass, (except for a couple of style edits that are from the distrubution code, not yours)
+// One suggestion i would make is since we deal with a lot of iterating over the board using double for loops, instead of using
+// i and j for your variable names, it may help if you use something more descriptive, like row and column. I think it would
+// make it easier to follow along.
+// Comments in each of the functions would really help too, especially in move where the code gets pretty long and is harder to
+// follow along
+
+
 /**
  * fifteen.c
  *
